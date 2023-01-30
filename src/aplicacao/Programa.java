@@ -1,11 +1,14 @@
 package aplicacao;
 
+import xadrez.Regras;
+
 public class Programa {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Olá, mundo!");
-
+		Regras regras = new Regras();
+		UI.exibirTabuleiro(regras.getPecas());
+		
 	}
 
 }

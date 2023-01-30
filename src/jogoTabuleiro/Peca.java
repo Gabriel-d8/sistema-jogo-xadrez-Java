@@ -8,7 +8,7 @@ public class Peca {
 
 	public Peca(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
-		posicao = null;              /* <-- Opcional */
+		posicao = null;
 	}
 
 	protected Tabuleiro getTabuleiro() {
