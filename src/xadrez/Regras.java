@@ -1,8 +1,6 @@
 package xadrez;
 
-import jogoTabuleiro.Posicao;
 import jogoTabuleiro.Tabuleiro;
-import xadrez.pecas.Torre;
 
 public class Regras {
 
@@ -24,6 +22,5 @@ public class Regras {
 	}
 	
 	private void iniciar() {
-		tabuleiro.localPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));    // Teste: Introdução de peça no tabuleiro
 	}
 }
