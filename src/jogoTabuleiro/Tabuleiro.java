@@ -21,7 +21,7 @@ public class Tabuleiro {
 
 	public int getColunas() {
 		return colunas;
-	}                              //Métodos "set" de linhas e colunas removidos; Para não permitir alteração destes atributos.
+	}                              
 
 	public Peca peca(int linha, int coluna) {
 		if (!posicaoExistente(linha, coluna)) {

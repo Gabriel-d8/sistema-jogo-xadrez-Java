@@ -32,7 +32,7 @@ public class XadrezPosicao {
 	
 	@Override
 	public String toString() {
-		return "" + coluna + linha;        //obs: Usa-se "" para o compilador entender que se trata de uma concatenação de strings.
+		return "" + coluna + linha;  
 	}
 	
 }

@@ -28,7 +28,11 @@ public class Regras {
 	}
 	
 	private void iniciar() {
-		novoLocalDaPeca('b', 6, new Rei(tabuleiro, Cor.PRETO));				  //TESTE	
-		novoLocalDaPeca('e', 3, new Torre(tabuleiro, Cor.BRANCO));            //TESTE
+		novoLocalDaPeca('b', 6, new Rei(tabuleiro, Cor.PRETO));	
+		novoLocalDaPeca('c', 2, new Rei(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('g', 5, new Rei(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));            //TESTES
+		novoLocalDaPeca('e', 6, new Rei(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('a', 3, new Torre(tabuleiro, Cor.BRANCO)); 
 	}
 }
