@@ -1,6 +1,8 @@
 package xadrez;
 
 import jogoTabuleiro.Tabuleiro;
+import xadrez.pecas.Rei;
+import xadrez.pecas.Torre;
 
 public class Regras {
 
@@ -21,6 +23,12 @@ public class Regras {
 		return matriz;
 	}
 	
+	private void novoLocalDaPeca(char coluna, int linha, PecaXadrez peca) {
+		tabuleiro.localPeca(peca, new XadrezPosicao(coluna, linha).posicionar());
+	}
+	
 	private void iniciar() {
+		novoLocalDaPeca('b', 6, new Rei(tabuleiro, Cor.PRETO));				  //TESTE	
+		novoLocalDaPeca('e', 3, new Torre(tabuleiro, Cor.BRANCO));            //TESTE
 	}
 }
