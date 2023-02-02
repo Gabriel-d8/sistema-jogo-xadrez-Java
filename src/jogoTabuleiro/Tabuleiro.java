@@ -38,11 +38,24 @@ public class Tabuleiro {
 	}
 	
 	public void localPeca(Peca peca, Posicao posicao) {
-		if(posicaoPreenchida(posicao)) {
+		if (posicaoPreenchida(posicao)) {
 			throw new TabuleiroExcecao("Posição '" + posicao + "' inválida! Já existe uma peça na posição escolhida.");
 		}
-		pecas [posicao.getLinha()][posicao.getColuna()] = peca;
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
+	}
+	
+	public Peca removerPeca(Posicao posicao) {
+		if (!posicaoExistente(posicao)) {
+			throw new TabuleiroExcecao("Posição inexistente!");
+		}
+		if (peca(posicao) == null) {
+			return null;
+		}
+		Peca aux = peca(posicao);
+		aux.posicao = null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
 	}
 	
 	private boolean posicaoExistente(int linha, int coluna) {
