@@ -25,10 +25,17 @@ public class Regras {
 		return matriz;
 	}
 	
+	public boolean[][] movimentosPossiveis(XadrezPosicao posicaoOrigem){
+		Posicao posicao = posicaoOrigem.posicionar();
+		validacaoPosicaoOrigem(posicao);
+		return tabuleiro.peca(posicao).movimentosPossiveis();
+	}
+	
 	public PecaXadrez executarJogada(XadrezPosicao posicaoOrigem, XadrezPosicao posicaoDestino) {
 		Posicao origem = posicaoOrigem.posicionar();
 		Posicao destino = posicaoDestino.posicionar();
 		validacaoPosicaoOrigem(origem);
+		validacaoPosicaoDestino(origem, destino);
 		Peca pecaCapturada = mover(origem, destino);
 		return (PecaXadrez) pecaCapturada;
 	}
@@ -43,6 +50,15 @@ public class Regras {
 	private void validacaoPosicaoOrigem(Posicao posicao) {
 		if(!tabuleiro.posicaoPreenchida(posicao)) {
 			throw new XadrezExcecao("Erro! Não existe peça na posição de origem");
+		}
+		if(!tabuleiro.peca(posicao).seExisteMovimentoPossivel()) {
+			throw new XadrezExcecao("Erro! Não existem movimentos possíveis para a peça escolhida.");
+		}
+	}
+	
+	private void validacaoPosicaoDestino(Posicao origem, Posicao destino) {
+		if(!tabuleiro.peca(origem).movimentoPossivel(destino)) {
+			throw new XadrezExcecao("Erro! A peça escolhida não pode se mover para a posição de destino.");
 		}
 	}
 	

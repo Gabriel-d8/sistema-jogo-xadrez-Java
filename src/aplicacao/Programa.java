@@ -24,9 +24,13 @@ public class Programa {
 				System.out.print("Posição de origem: ");
 				XadrezPosicao origem = UI.lerPosicao(sc);
 				
-				System.out.println();                                 //TESTE: Movimentação de jogada simples
+				System.out.println();                                 
 				System.out.print("Posição de destino: ");
 				XadrezPosicao destino = UI.lerPosicao(sc);
+				
+				boolean [][] movimentosPossiveis = regras.movimentosPossiveis(origem);
+				UI.limparTela();
+				UI.exibirTabuleiro(regras.getPecas(), movimentosPossiveis);
 				
 				PecaXadrez pecaCapturada = regras.executarJogada(origem, destino);
 			}
