@@ -1,10 +1,14 @@
 package aplicacao;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import xadrez.Cor;
 import xadrez.PecaXadrez;
+import xadrez.Regras;
 import xadrez.XadrezPosicao;
 
 public class UI {
@@ -46,6 +50,15 @@ public class UI {
 			throw new InputMismatchException("Erro! Digite valores válidos entre a1 e h8");
 		}
 	}
+	
+	public static void exibirPartida(Regras partida, List<PecaXadrez> capturadas) {
+		exibirTabuleiro(partida.getPecas());
+		System.out.println();
+		exibirPecasCapturadas(capturadas);
+		System.out.println();
+		System.out.println("Vez " + partida.getVez());
+		System.out.println("Aguardando o jogador " + partida.getJogadorAtual());
+	}
 
 	public static void exibirTabuleiro(PecaXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
@@ -85,6 +98,20 @@ public class UI {
 			}
 		}
 		System.out.print(" "); 
-	}	
+	}
+	
+	private static void exibirPecasCapturadas(List<PecaXadrez> capturadas) {
+		List<PecaXadrez> brancas = capturadas.stream().filter(x -> x.getCor() == Cor.BRANCO).collect(Collectors.toList());
+		List<PecaXadrez> pretas = capturadas.stream().filter(x -> x.getCor() == Cor.PRETO).collect(Collectors.toList());
+		System.out.println("Peças capturadas:");
+		System.out.print("Brancas:");
+		System.out.print(ANSI_WHITE);
+		System.out.println(Arrays.toString(brancas.toArray()));
+		System.out.print(ANSI_RESET);
+		System.out.print("Pretas:");
+		System.out.print(ANSI_BLACK);
+		System.out.println(Arrays.toString(pretas.toArray()));
+		System.out.print(ANSI_RESET);
+	}
 
 }

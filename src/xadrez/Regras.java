@@ -1,5 +1,8 @@
 package xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jogoTabuleiro.Peca;
 import jogoTabuleiro.Posicao;
 import jogoTabuleiro.Tabuleiro;
@@ -8,13 +11,28 @@ import xadrez.pecas.Torre;
 
 public class Regras {
 
+	private int vez;
+	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
+	
+	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+	private List<Peca> pecasCapturadas = new ArrayList<>();
 	
 	public Regras() {
 		tabuleiro = new Tabuleiro(8, 8);
+		vez = 1;
+		jogadorAtual = Cor.BRANCO;
 		iniciar();
 	}
 	
+	public int getVez() {
+		return vez;
+	}
+
+	public Cor getJogadorAtual() {
+		return jogadorAtual;
+	}
+
 	public PecaXadrez [][] getPecas(){
 		PecaXadrez [][] matriz = new PecaXadrez [tabuleiro.getLinhas()][tabuleiro.getColunas()];
 		for(int i=0; i<tabuleiro.getLinhas(); i++) {
@@ -37,6 +55,7 @@ public class Regras {
 		validacaoPosicaoOrigem(origem);
 		validacaoPosicaoDestino(origem, destino);
 		Peca pecaCapturada = mover(origem, destino);
+		proximoAJogar();
 		return (PecaXadrez) pecaCapturada;
 	}
 	
@@ -44,12 +63,21 @@ public class Regras {
 		Peca p = tabuleiro.removerPeca(origem);
 		Peca pecaCapturada = tabuleiro.removerPeca(destino);
 		tabuleiro.localPeca(p, destino);
+		
+		if(pecaCapturada != null) {
+			pecasNoTabuleiro.remove(pecaCapturada);
+			pecasCapturadas.add(pecaCapturada);
+		}
+		
 		return pecaCapturada;
 	}
 	
 	private void validacaoPosicaoOrigem(Posicao posicao) {
 		if(!tabuleiro.posicaoPreenchida(posicao)) {
 			throw new XadrezExcecao("Erro! Não existe peça na posição de origem");
+		}
+		if(jogadorAtual != ((PecaXadrez)tabuleiro.peca(posicao)).getCor()) {
+			throw new XadrezExcecao("Erro! A peça escolhida não é sua.");
 		}
 		if(!tabuleiro.peca(posicao).seExisteMovimentoPossivel()) {
 			throw new XadrezExcecao("Erro! Não existem movimentos possíveis para a peça escolhida.");
@@ -62,8 +90,14 @@ public class Regras {
 		}
 	}
 	
+	private void proximoAJogar() {
+		vez++;
+		jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
+	}
+	
 	private void novoLocalDaPeca(char coluna, int linha, PecaXadrez peca) {
 		tabuleiro.localPeca(peca, new XadrezPosicao(coluna, linha).posicionar());
+		pecasNoTabuleiro.add(peca);
 	}
 	
 	private void iniciar() {
