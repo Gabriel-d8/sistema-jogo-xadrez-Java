@@ -16,6 +16,7 @@ public class Regras {
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	private boolean cheque;
+	private boolean chequeMate;
 	
 	private List<Peca> pecasNoTabuleiro = new ArrayList<>();
 	private List<Peca> pecasCapturadas = new ArrayList<>();
@@ -37,6 +38,10 @@ public class Regras {
 
 	public boolean getCheque() {
 		return cheque;
+	}
+	
+	public boolean getChequeMate() {
+		return chequeMate;
 	}
 	
 	public PecaXadrez [][] getPecas(){
@@ -69,12 +74,19 @@ public class Regras {
 		
 		cheque = (testeCheque(oponente(jogadorAtual))) ? true : false;
 		
+		if(testeChequeMate(oponente(jogadorAtual))) {
+			chequeMate = true;
+		}
+		else {
 		proximoAJogar();
+		}
+		
 		return (PecaXadrez) pecaCapturada;
 	}
 	
 	private Peca mover(Posicao origem, Posicao destino) {
-		Peca p = tabuleiro.removerPeca(origem);
+		PecaXadrez p = (PecaXadrez) tabuleiro.removerPeca(origem);
+		p.incrementarContagemMovimento();
 		Peca pecaCapturada = tabuleiro.removerPeca(destino);
 		tabuleiro.localPeca(p, destino);
 		
@@ -87,7 +99,8 @@ public class Regras {
 	}
 	
 	private void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada) {
-		Peca p = tabuleiro.removerPeca(destino);
+		PecaXadrez p = (PecaXadrez) tabuleiro.removerPeca(destino);
+		p.decrementarContagemMovimento();
 		tabuleiro.localPeca(p, origem);
 		
 		if(pecaCapturada != null) {
@@ -145,18 +158,44 @@ public class Regras {
 		return false;
 	}	
 	
+	private boolean testeChequeMate(Cor cor) {
+		if (!testeCheque(cor)) {
+			return false;
+		}
+		List<Peca> list = pecasNoTabuleiro.stream().filter(x -> ((PecaXadrez) x).getCor() == cor).collect(Collectors.toList());
+		for (Peca p : list) {
+			boolean [][] mat = p.movimentosPossiveis();
+			for (int i=0; i < tabuleiro.getLinhas(); i++) {
+				for (int j=0; j < tabuleiro.getColunas(); j++) {
+					if (mat[i][j]) {
+						Posicao origem = ((PecaXadrez)p).getXadrezPosicao().posicionar();
+						Posicao destino = new Posicao(i, j);
+						Peca pecaCapturada = mover(origem, destino);
+						boolean testeCheque = testeCheque(cor);
+						desfazerMovimento(origem, destino, pecaCapturada);
+						if (!testeCheque) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
 	private void novoLocalDaPeca(char coluna, int linha, PecaXadrez peca) {
 		tabuleiro.localPeca(peca, new XadrezPosicao(coluna, linha).posicionar());
 		pecasNoTabuleiro.add(peca);
 	}
 	
 	private void iniciar() {
-		novoLocalDaPeca('c', 8, new Rei(tabuleiro, Cor.PRETO));	
-		novoLocalDaPeca('d', 8, new Torre(tabuleiro, Cor.BRANCO));
-		novoLocalDaPeca('e', 7, new Rei(tabuleiro, Cor.PRETO));
-		novoLocalDaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));            
-		novoLocalDaPeca('d', 2, new Rei(tabuleiro, Cor.PRETO));
-		novoLocalDaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
+		//Posicionamento para implementar lógica de cheque-mate.
+		novoLocalDaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));	
+		novoLocalDaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		      
+		novoLocalDaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));            
+		novoLocalDaPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 	
 }

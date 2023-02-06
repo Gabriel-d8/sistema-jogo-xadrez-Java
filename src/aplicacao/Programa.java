@@ -18,7 +18,7 @@ public class Programa {
 		Regras regras = new Regras();
 		List<PecaXadrez> capturadas = new ArrayList<>();
 		
-		while(true) {
+		while(!regras.getChequeMate()) {
 			try {
 				UI.limparTela();
 				UI.exibirPartida(regras, capturadas);
@@ -49,7 +49,8 @@ public class Programa {
 				sc.nextLine();
 			}
 		}
-		
+		UI.limparTela();
+		UI.exibirPartida(regras, capturadas);
 	}
 
 }
