@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import jogoTabuleiro.Peca;
 import jogoTabuleiro.Posicao;
 import jogoTabuleiro.Tabuleiro;
+import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
@@ -189,13 +190,29 @@ public class Regras {
 	}
 	
 	private void iniciar() {
-		//Posicionamento para implementar lógica de cheque-mate.
-		novoLocalDaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));	
-		novoLocalDaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));	
 		novoLocalDaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));	
+		novoLocalDaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('d', 2, new Peao(tabuleiro, Cor.BRANCO));	
+		novoLocalDaPeca('e', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('f', 2, new Peao(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('g', 2, new Peao(tabuleiro, Cor.BRANCO));	
+		novoLocalDaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 		      
-		novoLocalDaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));            
-		novoLocalDaPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));            
+		novoLocalDaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));            
+		novoLocalDaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));            
+		novoLocalDaPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('d', 7, new Peao(tabuleiro, Cor.PRETO));            
+		novoLocalDaPeca('e', 7, new Peao(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('f', 7, new Peao(tabuleiro, Cor.PRETO));            
+		novoLocalDaPeca('g', 7, new Peao(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('h', 7, new Peao(tabuleiro, Cor.PRETO));            
 	}
 	
 }
