@@ -99,6 +99,22 @@ public class Regras {
 			pecasCapturadas.add(pecaCapturada);
 		}
 		
+		//Movimentação especial de Castling
+		if(p instanceof Rei && destino.getColuna() == origem.getColuna() + 2) {
+			Posicao origemTorre = new Posicao(origem.getLinha(), origem.getColuna() + 3);
+			Posicao destinoTorre = new Posicao(origem.getLinha(), origem.getColuna() + 1);
+			PecaXadrez torre = (PecaXadrez)tabuleiro.removerPeca(origemTorre);
+			tabuleiro.localPeca(torre, destinoTorre);
+			torre.incrementarContagemMovimento();
+		}
+		if(p instanceof Rei && destino.getColuna() == origem.getColuna() - 2) {
+			Posicao origemTorre = new Posicao(origem.getLinha(), origem.getColuna() - 4);
+			Posicao destinoTorre = new Posicao(origem.getLinha(), origem.getColuna() - 1);
+			PecaXadrez torre = (PecaXadrez)tabuleiro.removerPeca(origemTorre);
+			tabuleiro.localPeca(torre, destinoTorre);
+			torre.incrementarContagemMovimento();
+		}
+		
 		return pecaCapturada;
 	}
 	
@@ -110,6 +126,22 @@ public class Regras {
 		if(pecaCapturada != null) {
 			tabuleiro.localPeca(pecaCapturada, destino);
 			pecasNoTabuleiro.add(pecaCapturada);
+		}
+		
+		//Movimentação especial de Castling
+		if(p instanceof Rei && destino.getColuna() == origem.getColuna() + 2) {
+			Posicao origemTorre = new Posicao(origem.getLinha(), origem.getColuna() + 3);
+			Posicao destinoTorre = new Posicao(origem.getLinha(), origem.getColuna() + 1);
+			PecaXadrez torre = (PecaXadrez)tabuleiro.removerPeca(destinoTorre);
+			tabuleiro.localPeca(torre, origemTorre);
+			torre.decrementarContagemMovimento();
+		}
+		if(p instanceof Rei && destino.getColuna() == origem.getColuna() - 2) {
+			Posicao origemTorre = new Posicao(origem.getLinha(), origem.getColuna() - 4);
+			Posicao destinoTorre = new Posicao(origem.getLinha(), origem.getColuna() - 1);
+			PecaXadrez torre = (PecaXadrez)tabuleiro.removerPeca(destinoTorre);
+			tabuleiro.localPeca(torre, origemTorre);
+			torre.decrementarContagemMovimento();		
 		}
 	}
 	
@@ -197,7 +229,7 @@ public class Regras {
 		novoLocalDaPeca('b', 1, new Cavalo(tabuleiro, Cor.BRANCO));	
 		novoLocalDaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCO));	
 		novoLocalDaPeca('d', 1, new Rainha(tabuleiro, Cor.BRANCO));
-		novoLocalDaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		novoLocalDaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO, this));
 		novoLocalDaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		novoLocalDaPeca('g', 1, new Cavalo(tabuleiro, Cor.BRANCO));	
 		novoLocalDaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
@@ -214,7 +246,7 @@ public class Regras {
 		novoLocalDaPeca('b', 8, new Cavalo(tabuleiro, Cor.PRETO)); 
 		novoLocalDaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETO));
 		novoLocalDaPeca('d', 8, new Rainha(tabuleiro, Cor.PRETO));
-		novoLocalDaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		novoLocalDaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO, this));
 		novoLocalDaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETO));
 		novoLocalDaPeca('g', 8, new Cavalo(tabuleiro, Cor.PRETO)); 
 		novoLocalDaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));            
