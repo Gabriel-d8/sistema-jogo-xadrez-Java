@@ -19,7 +19,6 @@ public class Peao extends PecaXadrez {
 	@Override
 	public boolean[][] movimentosPossiveis() {
 		boolean mat [][] = new boolean [getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
-		
 		Posicao pAux = new Posicao(0, 0);
 		
 		if (getCor() == Cor.BRANCO) {
