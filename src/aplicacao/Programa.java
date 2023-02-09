@@ -23,11 +23,11 @@ public class Programa {
 				UI.limparTela();
 				UI.exibirPartida(regras, capturadas);
 				System.out.println();
-				System.out.print("Posição de origem: ");
+				System.out.print("Digite a osição de origem da peça: ");
 				XadrezPosicao origem = UI.lerPosicao(sc);
 				
 				System.out.println();                                 
-				System.out.print("Posição de destino: ");
+				System.out.print("Digite a posição de destino da peça: ");
 				XadrezPosicao destino = UI.lerPosicao(sc);
 				
 				boolean [][] movimentosPossiveis = regras.movimentosPossiveis(origem);
