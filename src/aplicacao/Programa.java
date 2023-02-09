@@ -15,13 +15,13 @@ public class Programa {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		Regras regras = new Regras();
+		Regras regrasPartida = new Regras();
 		List<PecaXadrez> capturadas = new ArrayList<>();
 		
-		while (!regras.getChequeMate()) {
+		while (!regrasPartida.getChequeMate()) {
 			try {
 				UI.limparTela();
-				UI.exibirPartida(regras, capturadas);
+				UI.exibirPartida(regrasPartida, capturadas);
 				System.out.println();
 				System.out.print("Digite a osição de origem da peça: ");
 				XadrezPosicao origem = UI.lerPosicao(sc);
@@ -30,20 +30,24 @@ public class Programa {
 				System.out.print("Digite a posição de destino da peça: ");
 				XadrezPosicao destino = UI.lerPosicao(sc);
 				
-				boolean [][] movimentosPossiveis = regras.movimentosPossiveis(origem);
+				boolean [][] movimentosPossiveis = regrasPartida.movimentosPossiveis(origem);
 				UI.limparTela();
-				UI.exibirTabuleiro(regras.getPecas(), movimentosPossiveis);
+				UI.exibirTabuleiro(regrasPartida.getPecas(), movimentosPossiveis);
 				
-				PecaXadrez pecaCapturada = regras.executarJogada(origem, destino);
+				PecaXadrez pecaCapturada = regrasPartida.executarJogada(origem, destino);
 				
 				if (pecaCapturada != null) {
 					capturadas.add(pecaCapturada);
 				}
 				
-				if (regras.getPromocao() != null) {
+				if (regrasPartida.getPromocao() != null) {
 					System.out.print("Digite a peça que será promovida (B/C/Ra/T: ");
-					String tipoDaPeca = sc.nextLine();
-					regras.substituirPecaPromovida(tipoDaPeca);
+					String tipoDaPeca = sc.nextLine().toUpperCase();
+					while (!tipoDaPeca.equals("Re") && !tipoDaPeca.equals("T") &&  !tipoDaPeca.equals("C") && !tipoDaPeca.equals("B")) {
+						System.out.print("Digite a peça que será promovida (B/C/Ra/T: ");
+						tipoDaPeca = sc.nextLine().toUpperCase();			
+					}
+					regrasPartida.substituirPecaPromovida(tipoDaPeca);
 				}
 			}
 			catch (XadrezExcecao e) {
@@ -56,7 +60,7 @@ public class Programa {
 			}
 		}
 		UI.limparTela();
-		UI.exibirPartida(regras, capturadas);
+		UI.exibirPartida(regrasPartida, capturadas);
 	}
 
 }
