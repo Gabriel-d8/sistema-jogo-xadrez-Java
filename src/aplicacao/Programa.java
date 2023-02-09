@@ -18,7 +18,7 @@ public class Programa {
 		Regras regras = new Regras();
 		List<PecaXadrez> capturadas = new ArrayList<>();
 		
-		while(!regras.getChequeMate()) {
+		while (!regras.getChequeMate()) {
 			try {
 				UI.limparTela();
 				UI.exibirPartida(regras, capturadas);
@@ -39,12 +39,18 @@ public class Programa {
 				if (pecaCapturada != null) {
 					capturadas.add(pecaCapturada);
 				}
+				
+				if (regras.getPromocao() != null) {
+					System.out.print("Digite a peça que será promovida (B/C/Ra/T: ");
+					String tipoDaPeca = sc.nextLine();
+					regras.substituirPecaPromovida(tipoDaPeca);
+				}
 			}
-			catch(XadrezExcecao e) {
+			catch (XadrezExcecao e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			}
-			catch(InputMismatchException e) {
+			catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			}

@@ -23,81 +23,81 @@ public class Rainha extends PecaXadrez {
 		
 		// Acima 
 		pAux.setValores(posicao.getLinha() - 1, posicao.getColuna());
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setLinha(pAux.getLinha() - 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		// À esquerda
 		pAux.setValores(posicao.getLinha(), posicao.getColuna() - 1);
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setColuna(pAux.getColuna() - 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		// À direita
 		pAux.setValores(posicao.getLinha(), posicao.getColuna() + 1);
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setColuna(pAux.getColuna() + 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		// Abaixo
 		pAux.setValores(posicao.getLinha() + 1, posicao.getColuna());
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setLinha(pAux.getLinha() + 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//Noroeste (Diagonal acima à esquerda)
 		pAux.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setValores(pAux.getLinha() - 1, pAux.getColuna() - 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		// Nordeste (Diagonal acima à direita)
 		pAux.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setValores(pAux.getLinha() - 1, pAux.getColuna() + 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		// Sudeste (Diagonal abaixo à direita
 		pAux.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setValores(pAux.getLinha() + 1, pAux.getColuna() + 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		// Sudoeste (Diagonal abaixo à esquerda
 		pAux.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
-		while(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+		while (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 			pAux.setValores(pAux.getLinha() + 1, pAux.getColuna() - 1);
 		}
-		if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}		
 		

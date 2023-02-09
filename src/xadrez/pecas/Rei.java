@@ -37,56 +37,56 @@ public class Rei extends PecaXadrez {
 		
 		//Acima
 		pAux.setValores(posicao.getLinha() - 1, posicao.getColuna());
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//Abaixo
 		pAux.setValores(posicao.getLinha() + 1, posicao.getColuna());
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//À esquerda
 		pAux.setValores(posicao.getLinha(), posicao.getColuna() - 1);
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//À direita
 		pAux.setValores(posicao.getLinha(), posicao.getColuna() + 1);
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//Noroeste (Diagonal acima à esquerda)
 		pAux.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}			
 		
 		//Nordeste (Diagonal acima à direita)
 		pAux.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//Sudoeste (Diagonal abaixo à esquerda)
 		pAux.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//Sudeste (Diagonal abaixo à direita)
 		pAux.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
-		if(getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
+		if (getTabuleiro().posicaoExistente(pAux) && podeMover(pAux)) {
 			mat[pAux.getLinha()][pAux.getColuna()] = true;
 		}
 		
 		//Movimento especial de Castling
-		if(getContagemMovimentos() == 0 && partida.getCheque()) {
+		if (getContagemMovimentos() == 0 && partida.getCheque()) {
 			Posicao posicaoTorre1 = new Posicao(posicao.getLinha(), posicao.getColuna() + 3);
-			if(testeRoque(posicaoTorre1)) {
+			if (testeRoque(posicaoTorre1)) {
 				Posicao p1 = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
 				Posicao p2 = new Posicao(posicao.getLinha(), posicao.getColuna() + 2);
 				if(getTabuleiro().peca(p1) == null && getTabuleiro().peca(p2) == null) {
@@ -95,11 +95,11 @@ public class Rei extends PecaXadrez {
 			}
 			
 			Posicao posicaoTorre2 = new Posicao(posicao.getLinha(), posicao.getColuna() - 4);
-			if(testeRoque(posicaoTorre2)) {
+			if (testeRoque(posicaoTorre2)) {
 				Posicao p1 = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
 				Posicao p2 = new Posicao(posicao.getLinha(), posicao.getColuna() - 2);
 				Posicao p3 = new Posicao(posicao.getLinha(), posicao.getColuna() - 3);
-				if(getTabuleiro().peca(p1) == null && getTabuleiro().peca(p2) == null && getTabuleiro().peca(p3) == null) {
+				if (getTabuleiro().peca(p1) == null && getTabuleiro().peca(p2) == null && getTabuleiro().peca(p3) == null) {
 					mat[posicao.getLinha()][posicao.getColuna() - 2] = true;
 				}
 			}	

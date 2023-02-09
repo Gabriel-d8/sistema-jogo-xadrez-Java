@@ -59,7 +59,7 @@ public class UI {
 		System.out.println("Vez " + partida.getVez());
 		if (!partida.getChequeMate()) {
 			System.out.println("Aguardando o jogador " + partida.getJogadorAtual());
-			if(partida.getCheque()) {
+			if (partida.getCheque()) {
 				System.out.println("CHEQUE!"); 
 			}
 		}	
@@ -92,7 +92,7 @@ public class UI {
 	}
 	
 	private static void exibirPeca(PecaXadrez peca, boolean background) {
-		if(background) {
+		if (background) {
 			System.out.println(ANSI_BLUE_BACKGROUND);
 		}
 		if (peca == null) {

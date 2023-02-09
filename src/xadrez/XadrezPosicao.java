@@ -8,7 +8,7 @@ public class XadrezPosicao {
 	private int linha;
 	
 	public XadrezPosicao(char coluna, int linha) {
-		if(coluna < 'a' || coluna > 'h' || linha < 1 || linha > 8) {
+		if (coluna < 'a' || coluna > 'h' || linha < 1 || linha > 8) {
 			throw new XadrezExcecao("Erro! Os valores válidos são apenas de a1 até h8");
 		}
 		this.coluna = coluna;

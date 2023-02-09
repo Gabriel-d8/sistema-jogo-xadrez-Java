@@ -27,31 +27,31 @@ public class Peao extends PecaXadrez {
 		
 		if (getCor() == Cor.BRANCO) {
 			pAux.setValores(posicao.getLinha() - 1, posicao.getColuna());
-			if(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+			if (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			pAux.setValores(posicao.getLinha() - 2, posicao.getColuna());
 			Posicao pAux2 = new Posicao(posicao.getLinha() - 1, posicao.getColuna());
-			if(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux) && getTabuleiro().posicaoExistente(pAux2) && !getTabuleiro().posicaoPreenchida(pAux2) && getContagemMovimentos() == 0) {
+			if (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux) && getTabuleiro().posicaoExistente(pAux2) && !getTabuleiro().posicaoPreenchida(pAux2) && getContagemMovimentos() == 0) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			pAux.setValores(posicao.getLinha() - 1, posicao.getColuna() -1);
-			if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+			if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			pAux.setValores(posicao.getLinha() - 1, posicao.getColuna() +1);
-			if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+			if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			
 			//Movimento especial de En Passant
-			if(posicao.getLinha() == 3) {
+			if (posicao.getLinha() == 3) {
 				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
-				if(getTabuleiro().posicaoExistente(esquerda) && seExistePecaOponente(esquerda) && getTabuleiro().peca(esquerda) == partida.getEnPassantVulneravel()) {
+				if (getTabuleiro().posicaoExistente(esquerda) && seExistePecaOponente(esquerda) && getTabuleiro().peca(esquerda) == partida.getEnPassantVulneravel()) {
 					mat[esquerda.getLinha() - 1][esquerda.getColuna()] =  true;
 				}
 				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
-				if(getTabuleiro().posicaoExistente(direita) && seExistePecaOponente(direita) && getTabuleiro().peca(direita) == partida.getEnPassantVulneravel()) {
+				if (getTabuleiro().posicaoExistente(direita) && seExistePecaOponente(direita) && getTabuleiro().peca(direita) == partida.getEnPassantVulneravel()) {
 					mat[direita.getLinha() - 1][direita.getColuna()] =  true;
 				}	
 			}
@@ -59,31 +59,31 @@ public class Peao extends PecaXadrez {
 		}
 		else {
 			pAux.setValores(posicao.getLinha() + 1, posicao.getColuna());
-			if(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
+			if (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux)) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			pAux.setValores(posicao.getLinha() + 2, posicao.getColuna());
 			Posicao pAux2 = new Posicao(posicao.getLinha() + 1, posicao.getColuna());
-			if(getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux) && getTabuleiro().posicaoExistente(pAux2) && !getTabuleiro().posicaoPreenchida(pAux2) && getContagemMovimentos() == 0) {
+			if (getTabuleiro().posicaoExistente(pAux) && !getTabuleiro().posicaoPreenchida(pAux) && getTabuleiro().posicaoExistente(pAux2) && !getTabuleiro().posicaoPreenchida(pAux2) && getContagemMovimentos() == 0) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			pAux.setValores(posicao.getLinha() + 1, posicao.getColuna() -1);
-			if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+			if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			pAux.setValores(posicao.getLinha() + 1, posicao.getColuna() +1);
-			if(getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
+			if (getTabuleiro().posicaoExistente(pAux) && seExistePecaOponente(pAux)) {
 				mat[pAux.getLinha()][pAux.getColuna()] = true;
 			}
 			
 			//Movimento especial de En Passant
-			if(posicao.getLinha() == 4) {
+			if (posicao.getLinha() == 4) {
 				Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
-				if(getTabuleiro().posicaoExistente(esquerda) && seExistePecaOponente(esquerda) && getTabuleiro().peca(esquerda) == partida.getEnPassantVulneravel()) {
+				if (getTabuleiro().posicaoExistente(esquerda) && seExistePecaOponente(esquerda) && getTabuleiro().peca(esquerda) == partida.getEnPassantVulneravel()) {
 					mat[esquerda.getLinha() + 1][esquerda.getColuna()] =  true;
 				}
 				Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
-				if(getTabuleiro().posicaoExistente(direita) && seExistePecaOponente(direita) && getTabuleiro().peca(direita) == partida.getEnPassantVulneravel()) {
+				if (getTabuleiro().posicaoExistente(direita) && seExistePecaOponente(direita) && getTabuleiro().peca(direita) == partida.getEnPassantVulneravel()) {
 					mat[direita.getLinha() + 1][direita.getColuna()] =  true;
 				}	
 			}
